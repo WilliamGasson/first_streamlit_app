@@ -44,6 +44,9 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
 
 
+
+
+
 # connecting to snowflake
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
@@ -53,9 +56,9 @@ my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
 my_data_row = my_cur.fetchone()
 
 # streamlit.text("Hello from Snowflake:")
-streamlit.text("The fuit load list contains:")
+streamlit.header("The fuit load list contains:")
 
-streamlit.text(my_data_row)
+streamlit.dataframe(my_data_row)
 
 
 
